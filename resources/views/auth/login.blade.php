@@ -39,12 +39,12 @@
                     {{ csrf_field() }}
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="yourUsername" class="form-label">username</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="yourUsername" value="{{old('username')}}" autocomplete="username" placeholder="username" required>
                         @error('username')
-                        <div class="invalid-feedback">{{$massage}}</div>
+                        <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                       </div>
                     </div>

@@ -30,7 +30,7 @@
               <i class="bi bi-person"></i>
             </div>
             <div class="ps-3">
-              <h6>{{$user}} User</h6>
+              <h6>{{$users}} User</h6>
             </div>
           </div>
         </div>
