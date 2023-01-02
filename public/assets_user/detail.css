@@ -1,0 +1,53 @@
+body {
+    background-color: #1d1d1f;
+}
+
+.height {
+    height: 100vh;
+}
+
+.card {
+    width: 350px;
+    height: 370px;
+    background-color: #e7e7ea;
+}
+
+.image {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+}
+
+.main-heading {
+    font-size: 40px;
+}
+
+.ratings i {
+    color: orange;
+}
+
+.colors {
+    display: flex;
+    margin-top: 2px;
+}
+
+.colors span {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    margin-right: 6px;
+}
+
+.colors span:nth-child(1) {
+    background-color: grey;
+}
+
+.colors span:nth-child(2) {
+    background-color: white;
+}
+
+.colors span:nth-child(3) {
+    background-color: black;
+}

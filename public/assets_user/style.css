@@ -1,0 +1,211 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    background-color: black;
+}
+
+.nav-link {
+    color: snow;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: #ff1867;
+}
+
+
+.navbar-brand {
+    color: snow;
+    font-weight: 600;
+}
+
+.navbar-brand:hover {
+    color:#ff1867;
+}
+
+/* Carousel */
+.carousel-caption {
+    position: absolute;
+    top: 65%;
+    transform: translateY(-80%);
+    left: -8%;
+}
+
+.carousel-caption h1 {
+    font-size: 70px;
+    font-weight: 400;
+    color: snow;
+}
+
+.carousel-caption p {
+    color: snow;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+    background-color: transparent;
+}
+
+.btn:hover {
+    color:#ff1867;
+}
+
+/* Section */
+.sub {
+    background-color: snow;
+}
+
+.sub h5 {
+    color: black;
+}
+
+.sub input {
+    height: 51px;
+    width: 50%;
+    color: black;
+    outline: none;
+    padding: 10px;
+}
+
+.btn1 {
+    height: 50px;
+    width: 50%;
+    color: white;
+    background-color: black;
+    outline: none;
+    border: none;
+    margin-left: -2px;
+}
+
+.btn1:hover {
+    background-color: #ff1867;
+    color: black;
+    transition: 0.6s;
+}
+
+/* Collections */
+.collection span {
+    color: black;
+    font-size: 19px;
+    font-weight: 800;
+    padding-left: 5px;
+}
+
+.card {
+    border: none;
+}
+
+.collection input {
+    position: absolute;
+    height: 45px;
+    width: 110px;
+    background-color: #ff1867;
+    color: black;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    text-align: center;
+    top: 40%;
+    left: 30%;
+    opacity: 0;
+}
+
+.collection .card:hover input {
+    opacity: 1;
+    transition: 0.8s;
+}
+
+.collection input:hover {
+    background-color: black;
+    color: #ff1867;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/* Parallax */
+.parallex {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./img/ip2.jpg) no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    width: 100%;
+}
+
+.parallex h1 {
+    font-size: 55px;
+    font-weight: 700;
+}
+
+.parallex p {
+    font-size: 22px;
+}
+
+.btn2 {
+    height: 40px;
+    width: 110px;
+    background: transparent;
+    border: 2px solid snow;
+    color: snow;
+    outline: none;
+    border-radius: 4px;
+}
+
+.btn2:hover {
+    background-color: snow;
+    color: #ff1867;
+    transition: 0.4s;
+    border: none;
+}
+
+.btn3 {
+    height: 40px;
+    width: 110px;
+    background-color: snow; outline:  none;
+    border: none;
+    color: #ff1867;
+    border-radius: 4px;
+}
+
+.btn3:hover {
+    background-color: transparent;
+    color: snow;
+    transition: 0.4s;
+    border: none;
+}
+
+/* Contact */
+.contact input {
+    height: 50px;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: rgb(114, 5, 223);
+    background-color: snow;
+    padding: 10px;
+    -webkit-box-shadow: 0px 2px 21px -8px rgba(0, 0, 0, .75) ;
+    -moz-box-shadow: 0px 2px 21px -8px rgba(0, 0, 0, .75) ;
+    box-shadow: 0px 2px 21px -8px rgba(0, 0, 0, .75) ;;
+}
+
+.btn4 {
+    height: 45px;
+    width: 160px;
+    background-color: rgb(114, 5, 223);
+    color: snow;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn4:hover {
+    background-color: black;
+    color: rgb(114, 5, 223);
+    transition: 0.4s;
+    border: none;
+}

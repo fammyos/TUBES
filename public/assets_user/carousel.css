@@ -1,0 +1,23 @@
+/* Font */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Carousel */
+.carousel-caption {
+    position: absolute;
+    top: 65%;
+    transform: translateY(-90%);
+    left: -50%;
+}
+
+.carousel-caption h1 {
+    font-size: 70px;
+    font-weight: 400;
+    color: snow;
+}
+
+.carousel-caption p {
+    color: snow;
+    font-weight: 600;
+}
