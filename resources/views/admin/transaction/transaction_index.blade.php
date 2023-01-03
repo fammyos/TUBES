@@ -36,25 +36,27 @@
                                     <th>City</th>
                                     <th>Province</th>
                                     <th>Zip Code</th>
-                                    <th>Total Product Transaction</th>
+                                    <th>Courier</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($transaction as $item)
                                 <tr>
-                                    <td>1</td>
-                                    <td>User</td>
-                                    <td>{!! Str::limit('Jl. Pamekar Timur VII no 7', 10, ' ...') !!}</td>
-                                    <td>Bandung</td>
-                                    <td>Jawa Barat</td>
-                                    <td>40614</td>
-                                    <td>12</td>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->user->name}}</td>
+                                    <td>{!! Str::limit($item->address, 10, ' ...') !!}</td>
+                                    <td>{{$item->city}}</td>
+                                    <td>{{$item->province}}</td>
+                                    <td>{{$item->zip_code}}</td>
+                                    <td>{{$item->courier}}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <a href="{{route('transaction.detail')}}" type="button" class="btn btn-info"><i class="bi bi-file me-1"></i>View</a>
+                                            <a href="{{route('transaction.detail', ['id'=>$item->id])}}" type="button" class="btn btn-info"><i class="bi bi-file me-1"></i>View</a>
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

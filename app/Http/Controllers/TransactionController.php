@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -14,7 +15,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('admin.transaction.transaction_index');
+        $transaction = Transaction::all();
+
+        $data = array(
+            'transaction' => $transaction,
+        );
+
+        return view('admin.transaction.transaction_index', $data);
     }
 
     /**
@@ -44,9 +51,15 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('admin.transaction.transaction_detail');
+        $transaction = Transaction::find($id);
+
+        $data = array(
+            'transaction' => $transaction,
+        );
+
+        return view('admin.transaction.transaction_detail', $data);
     }
 
     /**
@@ -83,56 +96,5 @@ class TransactionController extends Controller
         //
     }
 
-    public function getProvince(Request $request)
-    {
-        $api_key = env('API_RAJA_ONGKIR');
-        $id = 1;
-        $url = 'https://api.rajaongkir.com/starter/province?id='.$id;
 
-        $responses = Http::withHeaders([
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'key' => $api_key
-        ])->get($url);
-
-        return $responses;
-
-        // dd($responses);
-    }
-
-    public function getCity(Request $request)
-    {
-        $api_key = env('API_RAJA_ONGKIR');
-        $id = 39;
-        $url = 'https://api.rajaongkir.com/starter/city?province=5&id='.$id;
-
-        $responses = Http::withHeaders([
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'key' => $api_key
-        ])->get($url);
-
-        return $responses;
-
-        // dd($responses);
-    }
-
-    public function getCost(Request $request)
-    {
-        $api_key = env('API_RAJA_ONGKIR');
-        $id = 39;
-        $url = 'https://api.rajaongkir.com/starter/cost';
-
-        $data = array(
-            'origin' => 23,
-            'destination' => 22,
-            'weight' => 1000,
-            'courier' => 'jne',
-        );
-
-        $responses = Http::withHeaders([
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'key' => $api_key
-        ])->post($url, $data);
-
-        return $responses;
-    }
 }

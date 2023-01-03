@@ -14,14 +14,7 @@
 
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('asset_detail_product/css/styles.css')}}" rel="stylesheet" />
-
-        <!-- CSS Custom -->
-        {{-- <link rel="stylesheet" href="{{asset('assets_user/button.css')}}">
-        <link rel="stylesheet" href="{{asset('assets_user/carousel.css')}}">
-        <link rel="stylesheet" href="{{asset('assets_user/card.css')}}">
-        <link rel="stylesheet" href="{{asset('assets_user/card_produk.css')}}">
-        <link rel="stylesheet" href="{{asset('assets_user/cart.css')}}">
-        <link rel="stylesheet" href="{{asset('assets_user/detail.css')}}"> --}}
+        <link rel="icon" href="{{asset('assets/img/img/u_gadget.png')}}">
 
   </head>
   <body>
@@ -37,24 +30,23 @@
                 <li class="nav-item"><a class="nav-link" href="{{route('about.us')}}">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('product.guest')}}">Product</a></li>
             </ul>
-            <form class="d-flex">
-                <button class="btn btn-outline-dark" type="submit">
+            {{-- <form class="d-flex"> --}}
+                <a href="{{route('cart')}}" class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
-                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                </button>
-            </form>
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">{{$cart_item}}</span>
+                </a>
+            {{-- </form> --}}
             @if (!Auth::user())
             <div style="margin-left: 15px">
-                <a class="btn btn-outline-dark" type="submit" href="#" role="button"><span>Search</span></a>
-                <a class="btn btn-dark" href="{{ route('login') }}" role="button"><span>Login</span></a>
+                <a class="btn btn-dark" href="{{ route('login') }}" role="button"><span>Sign In</span></a>
+                <a class="btn btn-outline-dark" type="submit" href="{{route('register')}}" role="button"><span>Sign Up</span></a>
             </div>
             @else
 
               <a class="nav-link nav-profile d-flex align-items-center pe-0" style="margin-left: 15px" href="#" data-bs-toggle="dropdown">
                 <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->name}}</span>
               </a><!-- End Profile Iamge Icon -->
-
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li>
                     <form action="{{route('logout')}}" method="POST">

@@ -1,75 +1,140 @@
-<!doctype html>
-<html lang="en">
+<link rel="stylesheet" type="text/css" href="{{asset('asset_checkout/user/styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{asset('user/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{asset('asset_checkout/user/styles/cart_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('asset_checkout/user/styles/cart_responsive.css')}}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap demo</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- CSS Custom -->
-  <link rel="stylesheet" href="{{asset('assets_user/checkout.css')}}">
-</head>
-
-<body>
-
-  <main class="page payment-page">
-    <section class="payment-form dark">
-      <div class="container">
-        <div class="block-heading">
-          <h2 class="pt-4">Payment</h2>
-        </div>
-        <form>
-          <div class="products">
-            <h3 class="title">Checkout</h3>
-            <div class="item">
-              <span class="price">$200</span>
-              <p class="item-name">Product 1</p>
-              <p class="item-description">Lorem ipsum dolor sit amet</p>
-            </div>
-            <div class="total">Total<span class="price">$320</span></div>
-          </div>
-          <div class="card-details">
-            <h3 class="title">Credit Card Details</h3>
-            <div class="row">
-              <div class="form-group col-sm-7">
-                <label for="card-holder">Card Holder</label>
-                <input id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1">
-              </div>
-              <div class="form-group col-sm-5">
-                <label for="">Expiration Date</label>
-                <div class="input-group expiration-date">
-                  <input type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
-                  <span class="date-separator"> / </span>
-                  <input type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
+<div class="cart_section">
+    <div class="container wrapper">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="cart_container">
+                    <div class="panel-heading">Shipping Address</div>
+                    <div class="panel-body">
+                        <ul class="cart_list">
+                            <li class="cart_item clearfix">
+                                <form class="form-horizontal" id="ongkir" method="POST" action="#" >
+                                    {!! csrf_field() !!}
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input name="address" type="text"  class="form-control address" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Zip Code</label>
+                                        <input name="zip_code" type="number"  class="form-control zip_code" placeholder="Zip Code Subdistrict">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Province</label>
+                                        <select name="province_destination" class="form-control province" >
+                                            <option value="">Province</option>
+                                            @foreach ($provinces as $province => $value)
+                                            <option value="{{$value->province_id}}">{{$value->province_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <select name="city_destination" class="form-control destination" >
+                                                <option value="">--City--</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Courier</label>
+                                            <select name="courier" class="form-control courier" >
+                                                <option value="jne">Jne</option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Weight (g) :</label>
+                                            <input name="weight" type="text"  class="form-control berat" placeholder="Weight" value="1000">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary nasi">Cek</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
-              <div class="form-group col-sm-8 pt-2">
-                <label for="card-number">Card Number</label>
-                <input id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1">
-              </div>
-              <div class="form-group col-sm-4 pt-2">
-                <label for="cvc">CVC</label>
-                <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
-              </div>
-              <div class="form-group col-sm-12">
-                <button class="btn btn-primary btn-block">Proceed</button>
-              </div>
+                <div class="cart_container">
+                    <div class="panel-heading">Ongkos Kirim</div>
+                    <div class="panel-body">
+                        <ul class="cart_list">
+                            <li class="cart_item clearfix " id="shipping_card">
+                            </li>
+                        </ul>
+                    </div>
             </div>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
+        </div>
+            <div class="col-lg-5">
+                <div class="cart_container">
+                        <form action="{{route('ongkir')}}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="panel-heading">Review Order</div>
+                            <div class="panel-body">
+                                <ul class="cart_list">
+                                    <?php $total = 0 ?>
+                                    <?php $i = 0 ?>
+                                    @foreach ($order_product as $value)
+                                    <?php $total += $value['product']->price * $value['qty'] ?>
+                                    <li class="cart_item clearfix">
+                                        {{-- <div class="form-group"> --}}
+                                            {{-- <input type="hidden" name="product[{{$i}}][id_product]" value="{{$details['id_product']}}"> --}}
+                                            <div class="col-sm-4 col-xs-4 cart_item_image pt-2"><img src="{{asset('storage/product_image/'.$value['image']->url_image)}}" alt="" class="img-responsive"></div>
+                                            <div class="cart_item_text">
+                                                {!! \Illuminate\Support\Str::words($value['product']->name, 3, '...')!!}
+                                            </div>
+                                            <div class="col-xs-12"><small>Quantity : <span>{{ $value['qty'] }}</span></small></div>
+                                            <input type="hidden" value="{{$value['qty']}}" name="product[{{$i}}][quantity]">
+                                            <div class="float-right">
+                                                    <h6 class="">@currency($value['product']->price * $value['qty'])</h6>
+                                            </div>
+                                                {{-- <div class="float-right">
+                                                    <h6 class="">{{App\product::konversi($details['harga'] * $details['quantity'])}}</h6>
+                                                </div> --}}
+                                        {{-- </div> --}}
+                                    </li>
+                                    <?php  $i++ ?>
+                                    @endforeach
+                                    <div class="form-group"><hr /></div>
+                                    <li class="cart_item clearfix">
+                                            <div class="col-xs-12">
+                                                <strong>Shipping Price :</strong>
+                                                <div class="float-right harga-ongkos"><h6 class="cart-total ongkirs">-</h6></div>
+                                                <input type="hidden" id="hidden-ongkir" name="harga_ongkir" autocomplete="off">
+                                                <input type="hidden" class="bpbp" value="{{$total}}">
+                                                <input type="hidden" class="tujuan-provinsi" value="" name="province_destination" autocomplete="off">
+                                                <input type="hidden" class="tujuan-kota" value="" name="city_destination" autocomplete="off">
+                                                <input type="hidden" class="kurir" value="" name="courier" autocomplete="off">
+                                                <input type="hidden" class="berat-barang" name="weight" value="" autocomplete="off">
+                                            </div>
+                                            <hr>
+                                            <div class="col-xs-12">
+                                                <strong>Total :</strong>
+                                                <div class="float-right"><h6 class="cart-total big-total">@currency($total)</h6></div>
+                                                    <input type="hidden" id="hidden-total" name="total_bayar" value="" autocomplete="off">
+                                            </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="submit-2">
+                                {{-- <button type="submit" class="btn btn-primary mt-3 float-right">Submit</button> --}}
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{{-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"crossorigin="anonymous"></script> --}}
+{{-- <script src="{{asset('admin/js/dist/jquery.simple-checkbox-table.min.js')}}"></script> --}}
 
-</html>
+
+<script src="{{asset('asset_checkout/script.js')}}"></script>
+

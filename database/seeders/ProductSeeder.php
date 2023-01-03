@@ -50,6 +50,7 @@ class ProductSeeder extends Seeder
             ],
         ];
 
+
         $data_image = [
             [
                 'product_id' => '100',

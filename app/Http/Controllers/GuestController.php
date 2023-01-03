@@ -16,10 +16,24 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $product = Product::where('product.type', '=', 'exist')->paginate(4);
+        $product = Product::where('product.type', '=', 'exist')
+        ->orderBy('created_at', 'asc')
+        ->paginate(4);
+        $order_product = session()->get('order_product');
+
+        $cart_item = 0;
+
+        if (!empty($order_product)) {
+            # code...
+            foreach ($order_product as $key => $value) {
+                $cart_item += $value['qty'];
+            }
+        }
+
 
         $data = array(
-            'products' => $product
+            'products' => $product,
+            'cart_item' => $cart_item,
         );
 
         return view('welcome', $data);
@@ -33,9 +47,22 @@ class GuestController extends Controller
     public function indexProduct()
     {
         $product = Product::where('product.type', '=', 'exist')->get();
+        $order_product = session()->get('order_product');
+
+        $cart_item = 0;
+
+        if (!empty($order_product)) {
+            # code...
+            foreach ($order_product as $key => $value) {
+                $cart_item += $value['qty'];
+            }
+        }
+
+
 
         $data = array(
-            'products' => $product
+            'products' => $product,
+            'cart_item' => $cart_item,
         );
 
         return view('produk', $data);
@@ -44,9 +71,22 @@ class GuestController extends Controller
     public function detailProduct($id)
     {
         $product = Product::find($id);
+        $products = Product::where('product.id', '!=', $id)->orderBy('created_at', 'asc')->get();
+        $order_product = session()->get('order_product');
+
+        $cart_item = 0;
+
+        if (!empty($order_product)) {
+            # code...
+            foreach ($order_product as $key => $value) {
+                $cart_item += $value['qty'];
+            }
+        }
 
         $data = array(
-            'product' => $product
+            'product' => $product,
+            'products' => $products,
+            'cart_item' => $cart_item,
         );
 
 
@@ -55,7 +95,22 @@ class GuestController extends Controller
 
     public function about()
     {
-        return view('about_us');
+        $order_product = session()->get('order_product');
+
+        $cart_item = 0;
+
+        if (!empty($order_product)) {
+            # code...
+            foreach ($order_product as $key => $value) {
+                $cart_item += $value['qty'];
+            }
+        }
+
+        $data = array(
+            'cart_item' => $cart_item,
+        );
+
+        return view('about_us', $data);
     }
 
     /**

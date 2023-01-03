@@ -53,7 +53,7 @@
                                         <td>{{$item->manufacturer}}</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                                <button type="button" class="btn btn-info"><i class="bi bi-file me-1"></i>View</button>
+                                                {{-- <button type="button" class="btn btn-info"><i class="bi bi-file me-1"></i>View</button> --}}
                                                 <a href="{{route('product.edit',['id' => $item->id])}}" type="button" class="btn btn-warning"><i class="bi bi-pencil me-1"></i>Edit</a>
                                                 <a href="{{route('product.delete',['id'=>$item->id])}}" type="button" class="btn btn-danger"><i class="bi bi-trash me-1"></i>Delete</a>
                                             </div>

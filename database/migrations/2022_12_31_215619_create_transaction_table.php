@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('city');
             $table->string('province');
             $table->string('zip_code');
+            $table->string('courier');
+            $table->string('shipping_price');
             $table->double('total_price');
             $table->timestamps();
         });

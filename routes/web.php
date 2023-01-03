@@ -30,12 +30,18 @@ Route::get('/detail-product/{id}', [GuestController::class, 'detailProduct'])->n
 
 Route::get('/cart', [cartController::class, 'index'])->name('cart');
 Route::post('/add-cart', [cartController::class, 'create'])->name('add.cart');
-Route::post('/update-cart', [cartController::class, 'update']);
+Route::post('/update-cart', [cartController::class, 'update'])->name('update.cart');
+Route::get('/delete-cart/{id}', [cartController::class, 'destroy'])->name('delete.cart');
 
 Route::get('about-us', [GuestController::class, 'about'])->name('about.us');
 
 Route::get('/checkout',[CheckOutController::class, 'index'])->name('checkout');
-Route::get('/test-api', [TransactionController::class, 'getCost']);
+Route::get('/province/{id}/cities', [CheckOutController::class, 'getCities']);
+Route::post('/Checkout/submit', [CheckOutController::class, 'submit'])->name('checkout-submit');
+// Route::post('/Checkout/shipping', 'checkoutController@checkOut')->name('ongkir');
+
+Route::post('/check-shipping', [CheckOutController::class, 'getCost'])->name('get.cost');
+Route::post('/checkout/shipping', [CheckOutController::class, 'checkOut'])->name('ongkir');
 
 Auth::routes();
 Route::group(['middleware' => 'admin'], function() {
@@ -74,5 +80,5 @@ Route::group(['middleware' => 'admin'], function() {
 
     // Transaction
     Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
-    Route::get('/transaction-detail', [TransactionController::class, 'show'])->name('transaction.detail');
+    Route::get('/transaction-detail/{id}', [TransactionController::class, 'show'])->name('transaction.detail');
 });

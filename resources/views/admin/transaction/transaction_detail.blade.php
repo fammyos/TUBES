@@ -27,7 +27,7 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="d-flex flex-row p-2"> <img src="https://i.imgur.com/vzlPPh3.png" width="48">
-                                    <div class="d-flex flex-column"> <span class="font-weight-bold">Invoice</span> <small>INV-001</small> </div>
+                                    <div class="d-flex flex-column"> <span class="font-weight-bold">Invoice</span> <small>INV-00{{$transaction->id}}</small> </div>
                                 </div>
                                 <hr>
                                 <div class="table-responsive p-2">
@@ -38,7 +38,7 @@
                                                 <td>From</td>
                                             </tr>
                                             <tr class="content">
-                                                <td class="font-weight-bold">Asep <br>Indonesia</td>
+                                                <td class="font-weight-bold">{{$transaction->user->name}} <br>Indonesia</td>
                                                 <td class="font-weight-bold">U-Gadget <br> Attn: Fammy <br> Indonesia</td>
                                             </tr>
                                         </tbody>
@@ -49,29 +49,21 @@
                                     <table class="table table-borderless">
                                         <tbody>
                                             <tr class="add">
-                                                <td>Description</td>
-                                                <td>Days</td>
+                                                <td>Product</td>
                                                 <td>Price</td>
+                                                <td>qty</td>
                                                 <td class="text-center">Total</td>
                                             </tr>
+                                            <?php $subtotal = 0 ?>
+                                            @foreach ($transaction->detailTransaction as $item)
+                                            <?php $subtotal += ($item->product->price * $item->qty) ?>
                                             <tr class="content">
-                                                <td>Website Redesign</td>
-                                                <td>15</td>
-                                                <td>$1,500</td>
-                                                <td class="text-center">$22,500</td>
+                                                <td>{{$item->product->name}}</td>
+                                                <td>@currency($item->product->price)</td>
+                                                <td>{{$item->qty}}</td>
+                                                <td class="text-center">@currency($item->product->price * $item->qty)</td>
                                             </tr>
-                                            <tr class="content">
-                                                <td>Logo & Identity</td>
-                                                <td>10</td>
-                                                <td>$1,500</td>
-                                                <td class="text-center">$15,000</td>
-                                            </tr>
-                                            <tr class="content">
-                                                <td>Marketing Collateral</td>
-                                                <td>3</td>
-                                                <td>$1,500</td>
-                                                <td class="text-center">$4,500</td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -82,14 +74,14 @@
                                             <tr class="add">
                                                 <td></td>
                                                 <td>Subtotal</td>
-                                                <td>GST(10%)</td>
+                                                <td>Shipping Address</td>
                                                 <td class="text-center">Total</td>
                                             </tr>
                                             <tr class="content">
                                                 <td></td>
-                                                <td>$40,000</td>
-                                                <td>2,500</td>
-                                                <td class="text-center">$42,500</td>
+                                                <td>@currency($subtotal)</td>
+                                                <td>@currency($transaction->shipping_price)</td>
+                                                <td class="text-center">@currency($transaction->total_price)</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -99,10 +91,10 @@
                                     <table class="table table-borderless">
                                         <tbody>
                                             <tr class="add">
-                                                <td>Bank Details</td>
+                                                <td>Invoice Details</td>
                                             </tr>
                                             <tr class="content">
-                                                <td> Bank Name : ADS BANK <br> Swift Code : ADS1234Q <br> Account Holder : Jelly Pepper <br> Account Number : 5454542WQR <br> </td>
+                                                <td> Payment : Transfer Manual <br> Courier : {{$transaction->courier}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
