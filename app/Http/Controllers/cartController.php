@@ -44,7 +44,6 @@ class cartController extends Controller
         );
 
         return view('cart', $data);
-
     }
 
     /**
@@ -61,18 +60,18 @@ class cartController extends Controller
             $product_id = $request->product_id;
 
             $product = DB::table('product')
-            ->where('product.id', '=', $product_id)
-            ->first();
+                ->where('product.id', '=', $product_id)
+                ->first();
 
             $product_image = DB::table('product_image')
-            ->where('product_image.product_id', '=', $product_id)
-            ->first();
+                ->where('product_image.product_id', '=', $product_id)
+                ->first();
 
 
             $product_category = DB::table('product_category')
-            ->where('product_category.id', '=', $request->product_category_id)
-            ->where('product_category.product_id', '=', $product_id)
-            ->first();
+                ->where('product_category.id', '=', $request->product_category_id)
+                ->where('product_category.product_id', '=', $product_id)
+                ->first();
 
             $order = session()->get('order_product');
             $id = $product->id;
@@ -106,7 +105,7 @@ class cartController extends Controller
             if (isset($order[$id]) && $order[$id]['product']) {
                 if ($order[$id]['qty'] + $request->qty >= $product_category->stock) {
                     # code...
-                    dd($product_category->stock);
+                    return redirect()->back()->with('failed', 'You add too many stock');
                 } else {
                     $order[$id]['qty'] += $request->qty;
                 }

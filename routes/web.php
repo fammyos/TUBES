@@ -40,6 +40,8 @@ Route::get('/province/{id}/cities', [CheckOutController::class, 'getCities']);
 Route::post('/Checkout/submit', [CheckOutController::class, 'submit'])->name('checkout-submit');
 // Route::post('/Checkout/shipping', 'checkoutController@checkOut')->name('ongkir');
 
+Route::get('/success-transaction', [GuestController::class, 'thanksPage'])->name('thanks');
+
 Route::post('/check-shipping', [CheckOutController::class, 'getCost'])->name('get.cost');
 Route::post('/checkout/shipping', [CheckOutController::class, 'checkOut'])->name('ongkir');
 
